@@ -19,8 +19,8 @@ public class PrediccionServiceImpl extends HttpClientConfig implements Prediccio
     private ObjectMapper objectMapper;
 
     String URL =
-            "https://image-rec365.cognitiveservices.azure.com/customvision/v3.0/Prediction/2f67f0bb-203a-4ac5-b093-435d97213a3d/classify/iterations/Iteration1/url?Prediction-Key=e8c2262268e145868c5af0ace80d07c4&Content-Type=application/json";
-    @Override
+            "https://custom-predict.cognitiveservices.azure.com/customvision/v3.0/Prediction/b35a6382-1d43-4b37-a39a-8149ed2e7185/detect/iterations/Iteration2/url?Prediction-Key=0fe342767f344d9ab26f16068214cb49&Content-Type=application/json";
+   @Override
     public HttpResponse<String> predecir(PrediccionBody prediccionBody) throws IOException, InterruptedException{
         String json = objectMapper.writeValueAsString(prediccionBody);
         HttpRequest request = HttpRequest.newBuilder()
