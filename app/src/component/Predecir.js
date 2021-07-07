@@ -14,11 +14,20 @@ class Predecir extends Component {
             "url": this.state.img
         })
         // console.log(res.data)
+        
         this.setState((state) => {
+            this.state.predictions.forEach(element => {
+                if (element.probability > 0.80) {
+                    console.log(element)       
+                }
+                
+            
+            });
+
             return { predictions: res.data.predictions }
         })
         console.log(this.state.predictions)
-
+        
     }
     onInputChange = (e) => {
         this.setState({
@@ -29,28 +38,29 @@ class Predecir extends Component {
     }
 
     render() {
+        
         const { predictions } = this.state
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-5">
-                        <div className="card card-body">
-                            <h4>URL</h4>
+                        <div className="card card-body border-dark mb-3">
+                            <h4>link</h4>
                             <form onSubmit={this.onSubmit}>
                                 <div className="input-group">
                                     <input type="text"
                                         className="form-control"
-                                        placeholder="URL"
+                                        placeholder="link"
                                         name="url"
 
                                         onChange={this.onInputChange} />
-                                    <button className="btn btn-outline-secondary">Enviar</button>
+                                    <button className="btn btn-outline-primary">Enviar</button>
                                 </div>
                             </form>
 
 
                         </div>
-                        <div className="card card-body">
+                        <div className="card card-body border-dark mb-3">
                             <h4>Predeccion</h4>
                             <table>
                                 <thead>
@@ -64,7 +74,7 @@ class Predecir extends Component {
                                         predictions.map((data, index) => (
                                             <tr key={data.tagId} scope="col">
                                                 <td>{data.tagName}</td>
-                                                <td>{data.probability * 100}%</td>
+                                                <td>{data.probability * 100} %</td>
                                             </tr>
                                         ))
                                     }
@@ -74,7 +84,7 @@ class Predecir extends Component {
                         </div>
                     </div>
                     <div className="col-7">
-                        <div className="card card-body">
+                        <div className="card card-body border-dark mb-3">
                             <h4>Imagen</h4>
                             <div className="card card-body">
                                 <img src={this.state.img} alt="" />
